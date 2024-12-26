@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package chat;
+
+option java_multiple_files = true;
+option java_package = "com.buddydim";
+option java_outer_classname = "ChatProto";
+
+service ChatService {
+  rpc sendChat (ChatRequest) returns (ChatResponse);
+}
+
+message ChatRequest {
+  string chat = 1;
+}
+
+message ChatResponse {
+  string message = 1;
+}
