@@ -1,7 +1,7 @@
 package com.buddydim.profile;
 
 import com.buddydim.login.User;
-import com.buddydim.profile.dto.ProfileResponse;
+import com.buddydim.profile.dto.ProfileResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -51,9 +51,9 @@ public class ProfileService {
         return savedProfile;
     }
 
-    public Optional<ProfileResponse> getProfileByUserId(Long userId) {
+    public Optional<ProfileResponseDto> getProfileByUserId(Long userId) {
         return profileRepository.findByUserId(userId)
-                .map(profile -> new ProfileResponse(
+                .map(profile -> new ProfileResponseDto(
                         profile.getProfileId(),
                         profile.getUserId(),
                         profile.getStudentId(),

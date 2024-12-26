@@ -1,13 +1,13 @@
 package com.buddydim.profile.dto;
 
-public class ProfileResponse {
+public class ProfileResponseDto {
     private Long profileId;
     private Long userId;
     private Long studentId;
     private String studentName;
 
     // 생성자
-    public ProfileResponse(Long profileId, Long userId, Long studentId, String studentName) {
+    public ProfileResponseDto(Long profileId, Long userId, Long studentId, String studentName) {
         this.profileId = profileId;
         this.userId = userId;
         this.studentId = studentId;

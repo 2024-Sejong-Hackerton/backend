@@ -1,6 +1,6 @@
 package com.buddydim.profile;
 
-import com.buddydim.profile.dto.ProfileResponse;
+import com.buddydim.profile.dto.ProfileResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class ProfileController {
 
     // userId로 프로필 조회
     @GetMapping("/{userId}")
-    public ResponseEntity<ProfileResponse> getProfileByUserId(@PathVariable("userId") Long userId) {
+    public ResponseEntity<ProfileResponseDto> getProfileByUserId(@PathVariable("userId") Long userId) {
         return profileService.getProfileByUserId(userId)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());

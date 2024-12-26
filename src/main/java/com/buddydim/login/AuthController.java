@@ -2,7 +2,7 @@ package com.buddydim.login;
 
 import com.buddydim.jwt.JwtUtil;
 import com.buddydim.profile.ProfileRepository;
-import com.buddydim.profile.dto.ProfileResponse;
+import com.buddydim.profile.dto.ProfileResponseDto;
 import com.buddydim.profile.ProfileService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -92,7 +92,7 @@ public class AuthController {
                     userInfoMap.put("status", status);
 
                     // Profile 정보 추가 (생성된 프로필 조회)
-                    ProfileResponse profile = profileService.getProfileByUserId(findUser.getUserId()).orElse(null);
+                    ProfileResponseDto profile = profileService.getProfileByUserId(findUser.getUserId()).orElse(null);
                     if (profile != null) {
                         userInfoMap.put("profile", profile);
                     }
