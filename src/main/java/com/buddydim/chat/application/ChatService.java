@@ -8,6 +8,7 @@ import com.buddydim.grpc.application.GrpcClientService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 @Service
 public class ChatService {
 
@@ -50,3 +51,35 @@ public class ChatService {
                              .orElseThrow(() -> new IllegalArgumentException("Chat not found"));
     }
 }
+=======
+//@Service
+//public class ChatService {
+//
+//    private final ChatRepository chatRepository;
+//
+//    @Autowired
+//    public ChatService(ChatRepository chatRepository) {
+//        this.chatRepository = chatRepository;
+//    }
+//
+//    @Transactional
+//    public void saveContent(final PostChatRequest request, final Long userId) {
+//        final Chat chat = new Chat(ChatStatus.IN_PROGRESS, "", userId);
+//        chatRepository.save(chat);
+//
+//        final Mono<FeedbackCreateResponse> mono = feedbackChatCompletionService.completeChat(
+//                request);
+//        mono.subscribe(
+//                response -> feedbackRepository.updateFeedbackStatusAndContentById(feedback.getId(),
+//                                                                                  FeedbackStatus.DONE,
+//                                                                                  response.feedback()));
+//        return feedback.getId();
+//    }
+//
+//    @Transactional
+//    public List<String> getChatHistory() {
+//        return chatRepository.findAll();
+//    }
+//}
+//
+>>>>>>> 980ea15 (feat : 엑셀로 시간표 뽑기)
