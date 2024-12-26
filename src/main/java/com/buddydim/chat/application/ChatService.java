@@ -1,10 +1,11 @@
 package com.buddydim.chat.application;
 
+import com.buddydim.grpc.application.GrpcClientService;
 import com.buddydim.chat.domain.Chat;
 import com.buddydim.chat.domain.ChatRepository;
 import com.buddydim.chat.domain.ChatStatus;
 import com.buddydim.chat.presentation.dto.PostChatRequest;
-import com.buddydim.grpc.application.GrpcClientService;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,7 @@ public class ChatService {
                 .subscribe(response -> chatRepository.updateFeedbackStatusAndContentById(chat.getId(),
                                                                                          ChatStatus.COMPLETED,
                                                                                          response.getMessage()));
+
 
         return chat.getId();
     }
