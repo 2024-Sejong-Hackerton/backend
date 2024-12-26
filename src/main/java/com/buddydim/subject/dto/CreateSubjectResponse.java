@@ -2,7 +2,7 @@ package com.buddydim.subject.dto;
 
 import java.time.LocalTime;
 
-public class SubjectResponseDto {
+public class CreateSubjectResponse {
     private Long subjectId;
     private Long profileId;
     private String subjectName;
@@ -18,7 +18,7 @@ public class SubjectResponseDto {
     }
 
     // Constructor
-    public SubjectResponseDto(Long subjectId, String subjectName,
+    public CreateSubjectResponse(Long subjectId, String subjectName,
                                  String professorName, String days, LocalTime startTime, LocalTime endTime, Long userId) {
         this.subjectId = subjectId;
         this.subjectName = subjectName;

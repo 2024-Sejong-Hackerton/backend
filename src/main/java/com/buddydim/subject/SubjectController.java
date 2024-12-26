@@ -1,11 +1,13 @@
 package com.buddydim.subject;
 
-import com.buddydim.subject.dto.SubjectRequestDto;
-import com.buddydim.subject.dto.SubjectResponseDto;
+import com.buddydim.subject.dto.CreateSubjectRequest;
+import com.buddydim.subject.dto.CreateSubjectResponse;
+import com.buddydim.subject.dto.TargetDaySubjectResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.buddydim.jwt.JwtUtil;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +25,8 @@ public class SubjectController {
     }
 
     @PostMapping
-    public ResponseEntity<List<SubjectResponseDto>> addSubjects(
-            @RequestBody List<SubjectRequestDto> subjectDtos,
+    public ResponseEntity<List<CreateSubjectResponse>> addSubjects(
+            @RequestBody List<CreateSubjectRequest> subjectDtos,
             @RequestHeader("Authorization") String authHeader) {
 
         String token = authHeader.replace("Bearer ", "");
@@ -47,8 +49,8 @@ public class SubjectController {
         List<Subject> savedSubjects = subjectService.saveAllSubjects(subjects, userId);
 
         // 저장된 데이터를 SubjectResponseDto로 변환
-        List<SubjectResponseDto> responseDtos = savedSubjects.stream()
-                .map(subject -> new SubjectResponseDto(
+        List<CreateSubjectResponse> responseDtos = savedSubjects.stream()
+                .map(subject -> new CreateSubjectResponse(
                         subject.getId(),
                         subject.getSubjectName(),
                         subject.getProfessorName(),
@@ -63,6 +65,16 @@ public class SubjectController {
         return ResponseEntity.ok(responseDtos);
     }
 
+    // 특정 날짜 과목 조회
+    @GetMapping("/checkToday")
+    public ResponseEntity<List<TargetDaySubjectResponse>> getSubjectsByUserIdAndDate(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+        Long userId = jwtUtil.getUserIdFromToken(token);
+
+        LocalDate date = LocalDate.now();
+        List<TargetDaySubjectResponse> response = subjectService.getSubjectsByUserIdAndDate(userId,date);
+        return ResponseEntity.ok(response);
+    }
 
 }
 

@@ -1,6 +1,6 @@
 package com.buddydim.subject.dto;
 
-public class SubjectRequestDto {
+public class CreateSubjectRequest {
     private String subjectName;
     private String days;
     private String professorName;
