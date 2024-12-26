@@ -5,6 +5,7 @@ import com.buddydim.chat.domain.Chat;
 import com.buddydim.chat.domain.ChatRepository;
 import com.buddydim.chat.domain.ChatStatus;
 import com.buddydim.chat.presentation.dto.PostChatRequest;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,22 @@ public class ChatService {
                                                                                          ChatStatus.COMPLETED,
                                                                                          response.getMessage()));
 
+
         return chat.getId();
+    }
+
+    @Transactional(readOnly = true)
+    public String getChatStatus(final Long chatId) {
+        return chatRepository.findById(chatId)
+                             .map(Chat::getChatStatus)
+                             .orElseThrow(() -> new IllegalArgumentException("Chat not found"))
+                             .name();
+    }
+
+    @Transactional(readOnly = true)
+    public String getChat(final Long chatId) {
+        return chatRepository.findById(chatId)
+                             .map(Chat::getContent)
+                             .orElseThrow(() -> new IllegalArgumentException("Chat not found"));
     }
 }

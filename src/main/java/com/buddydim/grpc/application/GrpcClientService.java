@@ -42,7 +42,6 @@ public class GrpcClientService {
 
                 @Override
                 public void onCompleted() {
-                    channel.shutdown();
                 }
             });
         });
